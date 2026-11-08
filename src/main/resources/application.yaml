@@ -1,0 +1,23 @@
+server:
+  port: ${SERVER_PORT:8888}
+
+spring:
+  application:
+    name: config-server
+  cloud:
+    # Spring Cloud 2025.1 está certificado para Spring Boot 4.0; el proyecto usa 4.1.
+    compatibility-verifier:
+      enabled: false
+    config:
+      server:
+        git:
+          # Repositorio git con la configuración; en Docker se monta en /config-repo.
+          uri: ${CONFIG_REPO_URI:file:${user.dir}/../config-repo}
+          default-label: main
+          clone-on-start: true
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health
