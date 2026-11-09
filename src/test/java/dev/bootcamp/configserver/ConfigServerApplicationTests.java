@@ -14,7 +14,10 @@ import static org.assertj.core.api.Assertions.assertThat;
  */
 @SpringBootTest(
         webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT,
-        properties = "spring.cloud.config.server.git.uri=file:../config-repo")
+        properties = {
+            "spring.cloud.config.server.git.uri=file:../config-repo",
+            "eureka.client.enabled=false"
+        })
 class ConfigServerApplicationTests {
 
     @LocalServerPort
